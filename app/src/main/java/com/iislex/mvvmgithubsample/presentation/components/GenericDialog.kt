@@ -27,6 +27,7 @@ fun GenericDialog(
         Text(text = description)
       }
     },
+
     buttons = {
       Row(
         modifier = Modifier
