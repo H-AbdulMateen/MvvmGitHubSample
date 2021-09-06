@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">MvvmGitHubSample</string>
+    <string name="enter_username">Enter Username</string>
+    <string name="search">Search</string>
 </resources>
