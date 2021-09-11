@@ -87,6 +87,7 @@ fun MainBody(viewModel: MainViewModel, connectivityManager: ConnectivityManager)
                         if (isNetworkAvailable) {
                             viewModel.onTriggerEvent(
                                 UserInfoEvent.GetUserInfoEvent
+
                             )
                         }else{
                         Toast.makeText(context, "No network Available", Toast.LENGTH_LONG).show()
