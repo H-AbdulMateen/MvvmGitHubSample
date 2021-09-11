@@ -34,6 +34,8 @@ class MainViewModel @Inject constructor(private val repository: UserRepository):
             }
         }
     }
+
+
    private fun checkUserInf(){
                 repository.execute(username = username.value).onEach {dataState ->
                     loading.value = dataState.loading

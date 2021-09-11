@@ -3,6 +3,7 @@ package com.iislex.mvvmgithubsample.presentation.ui.theme
 import androidx.compose.foundation.background
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.ScaffoldState
@@ -12,10 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.iislex.mvvmgithubsample.presentation.components.CircularIndeterminateProgressBar
-import com.iislex.mvvmgithubsample.presentation.components.DefaultSnackbar
-import com.iislex.mvvmgithubsample.presentation.components.GenericDialog
-import com.iislex.mvvmgithubsample.presentation.components.GenericDialogInfo
+import com.iislex.mvvmgithubsample.presentation.components.*
 import java.util.*
 
 private val DarkColorPalette = darkColors(
@@ -43,6 +41,7 @@ private val LightColorPalette = lightColors(
 fun MvvmGitHubSampleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     displayProgressBar: Boolean,
+    isNetworkAvailable: Boolean,
     scaffoldState: ScaffoldState,
     dialogQueue: Queue<GenericDialogInfo>? = null,
     content: @Composable () -> Unit
@@ -63,8 +62,11 @@ fun MvvmGitHubSampleTheme(
             modifier = Modifier
                 .fillMaxSize()
         ) {
-            content()
-            CircularIndeterminateProgressBar(isDisplayed = displayProgressBar, 0.3f)
+            Column{
+                ConnectivityMonitor(isNetworkAvailable = isNetworkAvailable)
+                content()
+            }
+            CircularIndeterminateProgressBar(isDisplayed = displayProgressBar, 0.5f)
             DefaultSnackbar(
                 snackbarHostState = scaffoldState.snackbarHostState,
                 onDismiss = {
